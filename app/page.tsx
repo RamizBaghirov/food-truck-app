@@ -18,12 +18,7 @@ export default function Home() {
   const { items, addItem, getTotalPrice, clearCart } = useCartStore()
 
  useEffect(() => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      window.Telegram.WebApp.ready()
-      window.Telegram.WebApp.expand()
-    }
-  }, [])
-    }
+    initTelegramApp()
   }, [])
 
   const filteredProducts = activeCategory === 'all' ? DEMO_PRODUCTS : DEMO_PRODUCTS.filter(p => p.category === activeCategory)
