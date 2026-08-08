@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useCartStore } from '@/store/cartStore'
 import { Product } from '@/types'
+import { initTelegramApp } from '@/lib/telegram'
 
 const DEMO_PRODUCTS: Product[] = [
   { id: '1', name: 'Капучино', description: 'Классический кофе с густой пеной', price: 12.00, category: 'drinks', image_url: 'https://placehold.co/400x300' },
@@ -16,10 +17,12 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const { items, addItem, getTotalPrice, clearCart } = useCartStore()
 
-  useEffect(() => {
+ useEffect(() => {
     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
       window.Telegram.WebApp.ready()
       window.Telegram.WebApp.expand()
+    }
+  }, [])
     }
   }, [])
 
